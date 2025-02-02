@@ -49,7 +49,6 @@ HAVING COUNT(*) = 1;
 SELECT name 
 FROM cities 
 WHERE countrycode = (
-    -- Find the country where only the specific language is spoken
     SELECT countrycode 
     FROM countrylanguages 
     WHERE language = (
@@ -68,7 +67,6 @@ WHERE countrycode = (
     HAVING COUNT(*) = 1
 )
 AND name <> (
-    -- Exclude the city that has the same name as the country
     SELECT name FROM countries 
     WHERE code = (
         SELECT countrycode 
